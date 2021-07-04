@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+      <!-- 这样的直接使用，每个列表的内容是相同的。-->
+      <todo-item
+          v-for="name in names"
+          v-bind:name="name"
+      ></todo-item>
+    </ul>
+</div>
+
+</body>
+<script>
+  <!--创建组件-->
+  // Vue.component("todo-item", {template: "<li> 学习vue</li>"})
+  <!--修改组件，让组件接收一个自定义的属性，这样后可以传递我们想要的值。-->
+  Vue.component("todo-item", {
+    // props 中的值，表示这个组件可以通过绑定一个自定义的属性来设置值。
+    props: ["name"],
+    template: "<li> {{name}}学习vue</li>"})
+  new Vue({
+    el: "#app",
+    data: {
+      names: ["孙悟空", "猪八戒", "唐三藏"]
+    }
+  })
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--1. 插值表达式-->
+    {{ message }}
+  <!--2. 单向绑定-->
+  <span v-bind:title = "message">查看信息</span>
+  <!--3. 双向绑定-->
+  <input type="text" v-model:value="message"/>
+  <!--4. 条件-->
+  <span v-if="show">现在可以看到我</span>
+  <!--5. 循环 v-for 可以遍历数组-->
+  <ul>
+    <li v-for="name in names ">
+      {{name}}
+    </li>
+  </ul>
+  <!--6. v-on-->
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">反转消息</button>
+</div>
+
+</body>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      message: "cjx",
+      show: false,
+      names: ["孙悟空", "猪八戒", "唐三藏"],
+
+    },
+    methods: {
+      reverseMessage() {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  })
+</script>
+
+</html>

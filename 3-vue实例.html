@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--安装Vue-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--当一个 Vue 实例被创建时，它将 data 对象中的所有的 property 加入到 Vue 的响应式系统中。当这些 property 的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。-->
+  {{message}}
+  <br>
+  {{data.a}}
+  <br>
+  {{data}}
+  <!--除了数据 property，Vue 实例还暴露了一些有用的实例 property 与方法。它们都有前缀 $，以便与用户定义的 property 区分开来。例如：$route-->
+  <!---->
+  <button v-bind:disabled="isButtonDisabled">Button</button>
+  <!--参数：-->
+  <!--一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，v-bind 指令可以用于响应式地更新 HTML attribute：-->
+  <!--这里的href就是参数，接收vue对象中data中的url的值。-->
+  <a v-bind:href="url">百度</a>
+  <!-- 动态参数：-->
+  <!--这里表示Vue的data属性中有没有一个为dynamic的属性，如果有则值取的是这个属性的值。
+      data: { dynamic: "href"}
+  -->
+  <a v-bind:[dynamic]="url">百度</a>
+
+
+
+</div>
+</body>
+  <script>
+    let data = {a: 1}
+    // console.log($data)
+   const vm = new Vue({
+      el: "#app",
+      data: {
+        message: "cjx",
+        data: data,
+        isButtonDisabled: null,
+        dynamic: "href",
+        url: "www.baidu.com"
+
+      }
+    })
+    // vue自带的对象
+    console.log(vm.$el == document.getElementById("app")) // true
+  </script>
+</html>
