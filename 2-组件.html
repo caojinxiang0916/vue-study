@@ -7,28 +7,49 @@
 </head>
 <body>
 <div id="app">
-    <ul>
-      <!-- 这样的直接使用，每个列表的内容是相同的。-->
-      <todo-item
-          v-for="name in names"
-          v-bind:name="name"
-      ></todo-item>
-    </ul>
+  <ul>
+    <!-- 这样的直接使用，每个列表的内容是相同的。-->
+    <todo-item
+        v-for="name in names"
+        v-bind:name="name"
+    ></todo-item>
+
+  </ul>
+  <rubbon></rubbon>
+  <ol>
+    <item></item>
+  </ol>
 </div>
 
 </body>
 <script>
   <!--创建组件-->
-  // Vue.component("todo-item", {template: "<li> 学习vue</li>"})
+  // 1. 创建全局组件
+   Vue.component("item", {template: "<li> 学习vue</li>"})
+  // 2. 定义局部组件，这个组件只能在本实例中使用。使用方法，在veu对象创建属性components，使用
+  /*
+  components: {
+    'rubbon': child
+  }
+  */
+  var child = {template: "<h1>自定义组件</h1>"}
   <!--修改组件，让组件接收一个自定义的属性，这样后可以传递我们想要的值。-->
   Vue.component("todo-item", {
     // props 中的值，表示这个组件可以通过绑定一个自定义的属性来设置值。
+    /*
+        prop 是子组件用来接受父组件传递过来的数据的一个自定义属性。
+    父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"：
+    */
     props: ["name"],
-    template: "<li> {{name}}学习vue</li>"})
+    template: "<li> {{name}}学习vue</li>"
+  })
   new Vue({
     el: "#app",
     data: {
       names: ["孙悟空", "猪八戒", "唐三藏"]
+    },
+    components: {
+      'rubbon': child
     }
   })
 </script>

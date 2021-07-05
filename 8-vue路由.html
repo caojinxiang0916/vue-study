@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--安装Vue-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="router.js"></script>
+
+
+</head>
+<body>
+<div id = "app">
+  <h1>Hello Vue</h1>
+  <p>
+    <!--使用router -link组件来导航，to表示属性指定的链接，且该标签会默认渲染成一个a标签-->
+    <router-link to ="/foo" >Go to foo</router-link>
+    <router-link to ="/bar" >Go to bar</router-link>
+  </p>
+  <!--路由的出口，匹配到的路由会渲染在这里-->
+  <router-view></router-view>
+</div>
+
+</body>
+<script>
+  // 1. 定义路由组件，也可以从其它文件中引入
+  const foo = {template: "<div>foo </div>"}
+  const bar = {template: "<div>bar </div>"}
+  // 2. 定义路由
+  // 每个路由应该映射一个组件
+  const routes = [
+    {path: "/foo", component: foo},
+    {path: "/bar", component: bar}
+  ]
+  // 3. 创建router实例，然后会routers来配置。
+  const router = new VueRouter({
+    routes // 缩写，相当于routes: routes
+  })
+  // 挂载路由
+  const app = new Vue({
+    router
+
+  }).$mount("#app")
+</script>
+
+</html>

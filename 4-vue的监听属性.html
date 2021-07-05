@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--安装Vue-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>计算点击多少下按钮：{{ count }}</p>
+  <button @click="count++">点击</button>
+
+  千米：<input type="text" v-model="kilometers" />
+  米：<input type="text" v-model="meters" />
+</div>
+</body>
+<script>
+  <!--监听属性，可以来监听响应数据的变化。-->
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      count: 0,
+      kilometers: 0,
+      meters: 0
+    },
+    watch: {
+      kilometers(val) {
+        this.kilometers = val;
+        this.meters = this.kilometers * 1000
+      },
+      meters(val ){
+        this.kilometers = val/1000;
+        this.meters = val;
+      }
+    }
+  });
+
+  // // $watch 是一个实例方法
+  // vm.$watch('kilometers', function (newValue, oldValue) {
+  //   // 这个回调将在 vm.kilometers 改变后调用
+  //   document.getElementById ("app").innerHTML = "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+  // })
+</script>
+</html>
